@@ -1,0 +1,71 @@
+.container-well {
+    padding: 0 15px;
+    margin: 0 auto;
+    max-width: 1200px;
+    @media (min-width: 768px) {}
+    @media (min-width: 992px) {}
+    @media (min-width: 1200px) {}
+    background: #3F3F3F;
+}
+/* Toolbar area */
+
+header {
+    border-bottom: 1px solid @main-green;
+    md-toolbar {
+        &.md-default-theme {
+            background: #353334;
+        }
+        h1 {
+            margin: auto 15px;
+            font-size: 3rem;
+            color: @main-green;
+            letter-spacing: -3px;
+            font-weight: 200;
+        }
+        .menu {
+            background-color: transparent;
+            border: none;
+            height: 38px;
+            margin: 16px;
+            width: 36px;
+        }
+        .icon-bar {
+            background-color: @main-grey;
+        }
+        .icon-bar+.icon-bar {
+            margin-top: 4px;
+        }
+        .icon-bar {
+            display: block;
+            width: 22px;
+            height: 2px;
+            border-radius: 1px;
+        }
+    }
+}
+
+footer.main-footer {
+    border-top: 1px solid @main-green;
+    min-height: 100px;
+    background: #353334;
+}
+.home{
+    .angular-logo {
+        width: 100%;
+        margin-bottom: 2rem;
+        max-width: 450px;
+        margin: 0 auto;
+        display: flex;
+    }
+}
+.page-box {
+   min-height: 30rem;
+}
+
+h2{
+    margin: 1rem 0;
+    font-size: 2rem;
+    text-align: center;
+    color: #3D85C6;
+    font-weight: 200;
+}

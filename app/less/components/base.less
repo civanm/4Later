@@ -1,0 +1,28 @@
+/* base.less */
+
+.reset();
+//imports open sans from google
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,300,400,600,700,800);
+html,
+html a {
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    background: #353334;
+}
+
+body {
+    .main-font();    
+    color: @main-grey;
+    height: auto;
+    background: #353334;
+}
+
+*,
+*::after,
+*::before {
+    .box-sizing( border-box);
+}
+
+a {
+    text-decoration: none;
+}

@@ -1,0 +1,42 @@
+
+.todo-list {
+    md-list-item{
+          justify-content: flex-start;
+          align-items: center;
+          display: block;      
+          position: relative;
+      
+        md-checkbox{
+            margin-left: 3px;
+            margin-right: 0;
+            padding-right: 0;
+            position: relative;
+            border-bottom: 1px solid #5A5959;
+            padding: 15px 0 15px 10px;
+            margin: 0;
+            label {
+                font-size: 1.3rem;
+            }
+            &.md-checked {
+                label {
+                    text-decoration: line-through;
+                    color: #537544;
+                 }
+            }
+        }
+        
+        .md-button{
+            position: absolute;
+            right: 4px;
+            top: 8px;
+            opacity: 1;
+         }
+         &:hover, &:focus{
+             background-color:#5A5959;
+              > .md-button{
+                  opacity: 1;
+              }
+         }
+    }
+}
+
