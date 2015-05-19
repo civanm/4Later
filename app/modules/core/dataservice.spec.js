@@ -66,4 +66,8 @@ describe('dataservice', function () {
             expect(result.length).toBe(1);
         });
     });
+
+    describe('Get suggestions from google', function () {
+        //TODO use $httpBackend to simulate request not use the real endpont for testin
+    });
 });

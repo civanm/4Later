@@ -3,7 +3,7 @@
         .controller('Shell', Shell);
 
     /* @ngInject */
-    function Shell($scope, $mdSidenav, dataservice) {
+    function Shell($scope, $mdSidenav) {
         var shell = this;        
 
         shell.toggleSidenav = function () {

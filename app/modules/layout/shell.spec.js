@@ -39,10 +39,13 @@ describe('Layout Shell', function () {
             scope = $rootScope.$new();
             shell = $controller('Shell', {
                 $scope: scope,
-                $mdSidenav: mocks.$mdSidenav,
-                translateService: mocks.translateService,
-                dataservice: mocks.dataservice
+                $mdSidenav: mocks.$mdSidenav
             });
         });
     });
+    
+    it('should have a toggle navigation function', function () {
+        expect(shell.toggleSidenav).toBeDefined();
+    });
+    
 });
