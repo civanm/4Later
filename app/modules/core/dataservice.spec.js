@@ -23,7 +23,11 @@ describe('dataservice', function () {
     describe('service function definitions', function () {
         it('should have getSuggestions function', function () {
             expect(dataservice.getSuggestions).toBeDefined();
-        });      
+        });
+        
+        it('should have a storage function', function () {
+           expect(dataservice.storage).toBedefined(); 
+        });
        
     });
 });

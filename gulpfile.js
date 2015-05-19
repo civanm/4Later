@@ -11,7 +11,6 @@ var gulp = require('gulp'),
     path = require('path'),
     browserify = require('browserify'),
     sourcemaps = require('gulp-sourcemaps'),
-    rimraf = require('gulp-rimraf'),
     source = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),
     runSequence = require('run-sequence').use(gulp),
@@ -47,25 +46,24 @@ gulp.task('tdd', function (done) {
     });
 });
 
+// JSHint task
+gulp.task('jshint', function () {
+    gulp.src(['app/*.js', 'app/**/*.js'])
+        .pipe(jshint())
+        .pipe(jshint.reporter(stylish));
+});
+
 //moves all the static content (images/* fonts/*)
 gulp.task('static_content', function () {
     return gulp.src(['app/static_content/**/', 'app/static_content/*'])
         .pipe(gulp.dest('release/static_content'));
 });
 
-// JSHint task
-gulp.task('jshint', function () {
-    gulp.src(['app/*.js', 'app/js/**/*.js'])
-        .pipe(jshint())
-        .pipe(jshint.reporter(stylish));
-    //.pipe(jshint.reporter('fail'));
-});
-
 //creates the bundle file and bundle.js.map
 gulp.task('js', function () {
     var bundle = function () {
         return browserify({
-                entries: ['./app/js/index.js'],
+                entries: ['./app/index.js'],
                 paths: ['./node_modules', '.js'],
                 debug: true
             })
@@ -116,18 +114,9 @@ gulp.task('views', function () {
         .pipe(gulp.dest('release/'));
 
     // Any other view files from /views
-    gulp.src('./app/js/modules/**/*.html')
+    gulp.src('./app/modules/**/*.html')
         .pipe(gulp.dest('release/views'));
 });
-
-function swallowError(error) {
-
-    //If you want details of the error in the console
-    console.log(error.toString());
-
-    this.emit('end');
-}
-
 
 //default task run it use: gulp
 gulp.task('default', ['build', 'watch']);
@@ -138,19 +127,23 @@ gulp.task('build', ['jshint', 'test', 'js', 'views', 'less', 'static_content']);
 //2. gulp release -> then minifies the generated files into release
 gulp.task('release', ['uglify', 'cssmin', 'minify-html']);
 
-gulp.task('start-server', function () {
-    nodemon({
-        script: 'server.js',
-        ext: 'js html'
-    });
-});
+// builds and releases, in sequence
 gulp.task('build:release', function () {
     runSequence(
         ['js', 'views', 'less', 'static_content'],
         ['uglify', 'cssmin', 'minify-html']
         );
 });
-//deploy task
+
+// starts the node server.js
+gulp.task('start-server', function () {
+    nodemon({
+        script: 'server.js',
+        ext: 'js html'
+    });
+});
+
+//builds, releases and starts the server
 gulp.task('deploy', function () {
     runSequence(
         ['js', 'views', 'less', 'static_content'],
@@ -162,6 +155,6 @@ gulp.task('deploy', function () {
 // Re-run the task when a file changes
 gulp.task('watch', function () {
     gulp.watch('app/less/**/*.less', ['less']);
-    gulp.watch(['app/js/*.js', 'app/js/**/*.js'], ['jshint', 'test', 'js']);
-    gulp.watch(['app/js/modules/**/*', 'app/*.html'], ['views', 'static_content']);
+    gulp.watch(['app/*.js', 'app/**/*.js'], ['jshint', 'test', 'js']);
+    gulp.watch(['app/modules/**/*', 'app/*.html'], ['views', 'static_content']);
 });

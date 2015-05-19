@@ -24,7 +24,6 @@
     "gulp-minify-html": "^1.0.2",
     "gulp-ng-annotate": "^0.5.2",
     "gulp-nodemon": "^2.0.3",
-    "gulp-rimraf": "^0.1.1",
     "gulp-sourcemaps": "^1.5.1",
     "gulp-uglify": "^1.1.0",
     "jasmine-core": "^2.2.0",
@@ -48,7 +47,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/civanm/PL_CIM.git"
+    "url": "https://github.com/civanm/4Latergit"
   },
   "bugs": {
     "url": "https://github.com/civanm/4Later/issues"
